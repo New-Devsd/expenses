@@ -4,11 +4,13 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Link from 'next/link'
+import Mandir from '../../public/ram-mandir.svg'
+import { useState } from 'react'
 
 export default function Header() {
 
 	const navigation = [
-		{ name: 'Donation List', href: '/home', current: true },
+		{ name: 'Donation List', href: '/donations', current: true },
 		{ name: 'Expenses ', href: '/expenses', current: false },
 		{ name: 'Contact Us', href: '#', current: false },
 	]
@@ -34,7 +36,7 @@ export default function Header() {
 						<div className="flex shrink-0 items-center">
 							<Image
 								alt="logo"
-								src="/ram-mandir.svg"
+								src={Mandir}
 								className="h-10 w-auto rounded-3xl"
 								width='0'
 								height='0'
@@ -118,19 +120,18 @@ export default function Header() {
 			<DisclosurePanel className="sm:hidden">
 				<div className="space-y-1 px-2 pt-2 pb-3">
 					{navigation.map((item) => (
-						<a
+						<Link
 							key={item.name}
-							as="link"
+							// as="link"
 							href={item.href}
 							aria-current={item.current ? 'page' : undefined}
 							className={classNames(
 								item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
 								'block rounded-md px-3 py-2 text-base font-medium',
 							)}
-							onClick={() => close()}
 						>
 							{item.name}
-						</a>
+						</Link>
 					))}
 				</div>
 			</DisclosurePanel>
